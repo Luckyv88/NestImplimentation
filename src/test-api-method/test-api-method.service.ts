@@ -27,4 +27,18 @@ export class TestApiMethodService {
     this.student.push(newStudent);
     return newStudent;
   }
+
+  updateStudent(id: number, data: { name: string; age: number }) {
+    const index = this.student.findIndex((s) => s.id === id);
+
+    if (index === -1) throw new NotFoundException('Student Not Exist');
+    this.student[index] = { id, ...data };
+    return this.student[index];
+  }
+
+  patchStudent(id: number, data: Partial<{ name: string; age: number }>) {
+    const editStudent = this.getStudentById(id);
+    Object.assign(editStudent, data);
+    return editStudent;
+  }
 }
