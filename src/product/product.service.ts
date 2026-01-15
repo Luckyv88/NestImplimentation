@@ -1,4 +1,4 @@
-import { Injectable, Get } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ProductService {
@@ -8,12 +8,10 @@ export class ProductService {
     { id: 3, name: 'Phone', price: 18000 },
   ];
 
-  @Get()
   getAllProduct() {
     return this.products;
   }
 
-  @Get()
   getProductById(id: number) {
     return this.products.find((product) => product.id === id);
   }
