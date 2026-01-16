@@ -6,10 +6,16 @@ import { ProductService } from './product/product.service';
 import { ProductController } from './product/product.controller';
 import { EmployeeModule } from './employee/employee.module';
 import { TestApiMethodModule } from './test-api-method/test-api-method.module';
+import { TestPipeController } from './test-pipe/test-pipe.controller';
 
 @Module({
   imports: [EmployeeModule, TestApiMethodModule],
-  controllers: [AppController, UserController, ProductController],
+  controllers: [
+    AppController,
+    UserController,
+    ProductController,
+    TestPipeController,
+  ],
   providers: [AppService, ProductService],
 })
 export class AppModule {}

@@ -4,6 +4,6 @@ import { TestApiMethodService } from './test-api-method.service';
 
 @Module({
   controllers: [TestApiMethodController],
-  providers: [TestApiMethodService]
+  providers: [TestApiMethodService],
 })
 export class TestApiMethodModule {}
