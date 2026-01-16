@@ -7,6 +7,7 @@ import { ProductController } from './product/product.controller';
 import { EmployeeModule } from './employee/employee.module';
 import { TestApiMethodModule } from './test-api-method/test-api-method.module';
 import { TestPipeController } from './test-pipe/test-pipe.controller';
+import { TestroleguardController } from './testroleguard/testroleguard.controller';
 
 @Module({
   imports: [EmployeeModule, TestApiMethodModule],
@@ -15,6 +16,7 @@ import { TestPipeController } from './test-pipe/test-pipe.controller';
     UserController,
     ProductController,
     TestPipeController,
+    TestroleguardController,
   ],
   providers: [AppService, ProductService],
 })
