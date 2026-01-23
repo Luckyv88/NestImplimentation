@@ -1,0 +1,146 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: #020617;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #38bdf8;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.sidebar button:hover {
+  background: #0ea5e9;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Topbar */
+.topbar {
+  height: 60px;
+  background: #020617;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.topbar button {
+  position: absolute;
+  left: 20px;
+  background: #ef4444;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  color: white;
+}
+
+/* Content */
+.content {
+  padding: 30px;
+  overflow-y: auto;
+}
+
+/* Action box */
+.action-box {
+  background: white;
+  padding: 30px;
+  max-width: 400px;
+  margin: auto;
+  border-radius: 15px;
+  box-shadow: 0 20px 30px rgba(0,0,0,0.4);
+  animation: float 3s ease-in-out infinite;
+}
+
+.action-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.action-box button {
+  width: 100%;
+  padding: 10px;
+  background: #22c55e;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+/* Todo Cards */
+.todo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.todo-card {
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+
+.todo-card:hover {
+  transform: translateY(-8px) rotateX(5deg);
+}
+
+.todo-card.done span {
+  text-decoration: line-through;
+  color: gray;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+.status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status.completed {
+  background: #22c55e;
+  color: white;
+}
+
+.status.pending {
+  background: #facc15;
+  color: #1f2937;
+}
