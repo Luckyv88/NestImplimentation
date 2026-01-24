@@ -44,7 +44,7 @@ const TodoApp = () => {
   // UPDATE TODO (toggle completed)
   const updateTodo = async (todo) => {
     const { data } = await axios.put(
-      `http://localhost:5000/api/todos/${todo._id}`,
+      `https://todo-backend-pez1.onrender.com/api/todos/${todo._id}`,
       { completed: !todo.completed },
       { headers: { Authorization: `Bearer ${user.token}` } }
     );
