@@ -13,7 +13,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "https://todo-backend-pez1.onrender.com/api/auth/register",
         form
       );
       setUser(data);
