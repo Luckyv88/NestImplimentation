@@ -13,7 +13,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://todo-backend-pez1.onrender.com",
+        "https://todo-backend-pez1.onrender.com/api/auth/login",
         form
       );
       setUser(data);
