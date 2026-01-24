@@ -20,7 +20,7 @@ const TodoApp = () => {
   }, [user]);
 
   const fetchTodos = async () => {
-    const { data } = await axios.get("http://localhost:5000/api/todos", {
+    const { data } = await axios.get("https://todo-backend-pez1.onrender.com/api/todos", {
       headers: { Authorization: `Bearer ${user.token}` }
     });
     setTodos(data);
@@ -31,7 +31,7 @@ const TodoApp = () => {
     if (!title.trim()) return;
 
     const { data } = await axios.post(
-      "http://localhost:5000/api/todos",
+      "https://todo-backend-pez1.onrender.com/api/todos",
       { title },
       { headers: { Authorization: `Bearer ${user.token}` } }
     );
@@ -54,7 +54,7 @@ const TodoApp = () => {
 
   // DELETE TODO
   const deleteTodo = async (id) => {
-    await axios.delete(`http://localhost:5000/api/todos/${id}`, {
+    await axios.delete(`https://todo-backend-pez1.onrender.com/api/todos/${id}`, {
       headers: { Authorization: `Bearer ${user.token}` }
     });
 
