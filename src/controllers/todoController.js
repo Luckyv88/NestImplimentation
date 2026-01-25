@@ -60,7 +60,7 @@ const updateTodo = async (req, res) => {
   }
 };
 
-exports.deleteTodo = async (req, res) => {
+const deleteTodo = async (req, res) => {
   try {
     const { id } = req.params;
 
