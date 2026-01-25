@@ -60,31 +60,33 @@ const updateTodo = async (req, res) => {
   }
 };
 
-const deleteTodo = async (req, res) => {
+exports.deleteTodo = async (req, res) => {
   try {
-    const todo = await Todo.findById(req.params.id);
+    const { id } = req.params;
 
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid todo ID" });
+    }
+
+  
+    const todo = await Todo.findById(id);
     if (!todo) {
-      return res.status(404).json({
-        message: 'Todo not found'
-      });
+      return res.status(404).json({ message: "Todo not found" });
     }
 
-    if (todo.user.toString() !== req.user._id.toString()) {
-      return res.status(401).json({
-        message: 'Not authorized'
-      });
+ 
+    if (todo.user.toString() !== req.user.id) {
+      return res.status(401).json({ message: "Not authorized" });
     }
 
-    await todo.remove();
-    res.json({
-      message: 'Todo removed'
-    });
+ 
+    await todo.deleteOne();
 
+    res.json({ message: "Todo deleted successfully" });
   } catch (error) {
-    res.status(500).json({
-      message: error.message
-    });
+    console.error("Delete error:", error.message);
+    res.status(500).json({ message: "Server error" });
   }
 };
 
