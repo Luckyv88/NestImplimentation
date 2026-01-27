@@ -12,6 +12,9 @@ const TodoApp = () => {
   const [title, setTitle] = useState("");
   const [view, setView] = useState("all"); // all | add | update | delete
 
+  // ✅ ADDED (only new state)
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,15 +23,22 @@ const TodoApp = () => {
   }, [user]);
 
   const fetchTodos = async () => {
-    const { data } = await axios.get("https://todo-backend-pez1.onrender.com/api/todos", {
-      headers: { Authorization: `Bearer ${user.token}` }
-    });
+    const { data } = await axios.get(
+      "https://todo-backend-pez1.onrender.com/api/todos",
+      {
+        headers: { Authorization: `Bearer ${user.token}` }
+      }
+    );
     setTodos(data);
   };
 
   // ADD TODO
   const addTodo = async () => {
-    if (!title.trim()) return;
+    // ✅ FRONTEND VALIDATION (added)
+    if (!title.trim()) {
+      setError("Please enter todo text");
+      return;
+    }
 
     const { data } = await axios.post(
       "https://todo-backend-pez1.onrender.com/api/todos",
@@ -38,6 +48,7 @@ const TodoApp = () => {
 
     setTodos([...todos, data]);
     setTitle("");
+    setError("");        // ✅ clear error after success
     setView("all");
   };
 
@@ -54,9 +65,12 @@ const TodoApp = () => {
 
   // DELETE TODO
   const deleteTodo = async (id) => {
-    await axios.delete(`https://todo-backend-pez1.onrender.com/api/todos/${id}`, {
-      headers: { Authorization: `Bearer ${user.token}` }
-    });
+    await axios.delete(
+      `https://todo-backend-pez1.onrender.com/api/todos/${id}`,
+      {
+        headers: { Authorization: `Bearer ${user.token}` }
+      }
+    );
 
     setTodos(todos.filter(t => t._id !== id));
   };
@@ -93,7 +107,7 @@ const TodoApp = () => {
         {/* CONTENT AREA */}
         <div className="content">
 
-          {/* ALL TODOS (DEFAULT) */}
+          {/* ALL TODOS */}
           {view === "all" && (
             <div className="todo-grid">
               {todos.map(todo => (
@@ -102,7 +116,6 @@ const TodoApp = () => {
                   className={`todo-card ${todo.completed ? "done" : ""}`}
                 >
                   <span>{todo.title}</span>
-
                   <span
                     className={`status ${
                       todo.completed ? "completed" : "pending"
@@ -122,9 +135,16 @@ const TodoApp = () => {
                 type="text"
                 placeholder="Enter new todo"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                  setError("");   // ✅ clear error while typing
+                }}
               />
+
               <button onClick={addTodo}>Add Todo</button>
+
+              {/* ✅ ERROR MESSAGE */}
+              {error && <p className="error-text">{error}</p>}
             </div>
           )}
 

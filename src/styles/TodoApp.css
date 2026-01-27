@@ -96,6 +96,12 @@ body {
   color: white;
 }
 
+.error-text {
+  color: red;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
 /* Todo Cards */
 .todo-grid {
   display: grid;
