@@ -1,6 +1,5 @@
 const Todo = require('../models/Todo');
-const mongoose = require('mongoose');
-
+const validateObjectId = require('../utils/validateObjectId'); 
 
 const getTodos = async (req, res) => {
   try {
@@ -35,6 +34,11 @@ const addTodo = async (req, res) => {
 
 const updateTodo = async (req, res) => {
   try {
+ 
+    if (!validateObjectId(req.params.id)) {
+      return res.status(400).json({ message: 'Invalid ID format' });
+    }
+
     const todo = await Todo.findById(req.params.id);
 
     if (!todo) {
@@ -64,31 +68,35 @@ const updateTodo = async (req, res) => {
 
 const deleteTodo = async (req, res) => {
   try {
-    const { id } = req.params;
-
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ message: "Invalid todo ID" });
-    }
-
   
-    const todo = await Todo.findById(id);
+    if (!validateObjectId(req.params.id)) {
+      return res.status(400).json({ message: 'Invalid ID format' });
+    }
+
+    const todo = await Todo.findById(req.params.id);
+
     if (!todo) {
-      return res.status(404).json({ message: "Todo not found" });
+      return res.status(404).json({
+        message: 'Todo not found'
+      });
     }
 
- 
-    if (todo.user.toString() !== req.user.id) {
-      return res.status(401).json({ message: "Not authorized" });
+    if (todo.user.toString() !== req.user._id.toString()) {
+      return res.status(401).json({
+        message: 'Not authorized'
+      });
     }
 
- 
-    await todo.deleteOne();
+    await Todo.findByIdAndDelete(req.params.id);
 
-    res.json({ message: "Todo deleted successfully" });
+    res.json({
+      message: 'Todo removed'
+    });
+
   } catch (error) {
-    console.error("Delete error:", error.message);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({
+      message: error.message
+    });
   }
 };
 
