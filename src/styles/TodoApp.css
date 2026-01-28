@@ -150,3 +150,109 @@ body {
   background: #facc15;
   color: #1f2937;
 }
+/* ========================= */
+/* RESPONSIVE DESIGN */
+/* ========================= */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 180px;
+    padding: 15px;
+  }
+
+  .sidebar h3 {
+    font-size: 1rem;
+  }
+
+  .sidebar button {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .topbar {
+    height: 55px;
+    font-size: 0.95rem;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .action-box {
+    padding: 25px;
+    max-width: 90%;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .dashboard {
+    flex-direction: row;
+  }
+
+  /* Vertical Sidebar shrink */
+  .sidebar {
+    width: 60px;
+    padding: 10px;
+  }
+
+  .sidebar h3 {
+    display: none;
+  }
+
+  .sidebar button {
+    padding: 8px;
+    font-size: 0;
+  }
+
+  .sidebar button::before {
+    content: "•";
+    font-size: 18px;
+  }
+
+  /* Horizontal Topbar shrink */
+  .topbar {
+    height: 45px;
+    font-size: 0.85rem;
+  }
+
+  .topbar button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    left: 10px;
+  }
+
+  .content {
+    padding: 15px;
+  }
+
+  /* Action Box */
+  .action-box {
+    padding: 20px;
+    animation: none; /* smoother on mobile */
+  }
+
+  .action-box input,
+  .action-box button {
+    font-size: 0.9rem;
+  }
+
+  /* Todo cards */
+  .todo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+  }
+
+  .todo-card {
+    padding: 12px;
+  }
+
+  .status {
+    font-size: 11px;
+  }
+}

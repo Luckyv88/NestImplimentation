@@ -77,3 +77,95 @@ body {
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0); }
 }
+
+/* ========================= */
+/* Responsive Design */
+/* ========================= */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .auth-card {
+    width: 90%;
+    padding: 25px;
+    border-radius: 16px;
+  }
+
+  .auth-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .auth-card input,
+  .auth-card button {
+    padding: 11px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .auth-container {
+    padding: 10px;
+  }
+
+  .auth-card {
+    width: 100%;
+    max-width: 320px;
+    padding: 20px;
+    animation: none; /* smoother on low-end phones */
+  }
+
+  .auth-card h2 {
+    font-size: 1.25rem;
+  }
+
+  .auth-card p {
+    font-size: 0.9rem;
+  }
+
+  .auth-card input,
+  .auth-card button {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ========================= */
+/* Navbar Responsive Shrink */
+/* ========================= */
+
+/* Horizontal Navbar */
+@media (max-width: 768px) {
+  .horizontal-navbar {
+    height: 50px;
+    padding: 0 10px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Vertical Navbar */
+@media (max-width: 768px) {
+  .vertical-navbar {
+    width: 60px;
+  }
+
+  .vertical-navbar span,
+  .vertical-navbar p {
+    display: none; /* hide text, icons only */
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+  .horizontal-navbar {
+    height: 45px;
+    font-size: 0.85rem;
+  }
+
+  .vertical-navbar {
+    width: 50px;
+  }
+}
