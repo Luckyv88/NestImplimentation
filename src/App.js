@@ -7,6 +7,7 @@ import './components/all.css';
 const Home = lazy(() => import('./components/Home'));
 const Login = lazy(() => import('./components/Login'));
 const Register = lazy(() => import('./components/Register'));
+const Verification = lazy(() => import('./components/Verification'));
 const Welcome = lazy(() => import('./components/Welcome'));
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+            <Route path="/verify" element={<Verification />} />
           <Route path="/welcome" element={<Welcome />} />
         </Routes>
       </Suspense>
